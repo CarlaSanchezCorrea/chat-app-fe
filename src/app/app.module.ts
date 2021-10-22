@@ -10,9 +10,11 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ContainerChannelComponent } from './components/view general/container-channel/container-channel.component';
 import { ContainerUsersComponent } from './components/view general/container-users/container-users.component';
 import { ViewGeneralComponent } from './components/view general/view-general/view-general.component';
+import { environment } from 'src/environments/environment';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 
-//import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
-//const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+
+const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { ViewGeneralComponent } from './components/view general/view-general/vie
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    //SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config)
   ],
   providers: [],
   bootstrap: [AppComponent]
