@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-//import jwtDecode from 'jwt-decode';
 import { AuthService } from 'src/app/services/auth.service';
 import { catchError} from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { SocketService } from 'src/app/services/socket.service';
-//import { io } from 'socket.io-client';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +20,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    // private socketService: SocketService
     ) { }
 
   ngOnInit(): void {
