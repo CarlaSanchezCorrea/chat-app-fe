@@ -9,7 +9,7 @@ export class SocketService {
 
   public socketStatus = false;
 
-  constructor( private socket : Socket) {
+  constructor( public socket : Socket) {
     //this.socket = {};
   }
   // socketConnect(){
@@ -35,7 +35,8 @@ export class SocketService {
 
   emit( evento: string, payload?: any, callback?: Function){
     // disparo un evento hacia el servidor
-    this.socket.emit(evento, payload, callback)
+    this.socket.emit(evento, payload, callback);
+    console.log(this.socket.emit(evento, payload, callback));
   }
   listen( evento: string) {
     //regresa un observable -> permite suscribir o desuscribir de salas de chat
