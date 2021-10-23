@@ -16,11 +16,11 @@ export class ContainerUsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.socketService.socket.on("connectedUsers", (client: any)=>{
-      // this.socketConnectedUsers.push(client);
-      // console.log(this.socketConnectedUsers)
-      this.client = client;
-    })
+    // this.socketService.socket.on("connectedUsers", (client: any)=>{
+    //   // this.socketConnectedUsers.push(client);
+    //   // console.log(this.socketConnectedUsers)
+    //   this.client = client;
+    // })
   }
 
   // ngOnChange(): void {

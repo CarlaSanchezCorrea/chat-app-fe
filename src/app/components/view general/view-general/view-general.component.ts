@@ -19,15 +19,15 @@ export class ViewGeneralComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.socketService.socketConnect();
-    this.chatBoxService.onReceiveMessage();
+    // this.socketService.socketConnect();
+    // this.chatBoxService.onReceiveMessage();
 
 
   }
 
-  ngOnDestroy(): void {
-    this.socketService.socket.disconnect();
-  }
+  // ngOnDestroy(): void {
+  //   this.socketService.socket.disconnect();
+  // }
 
   logOut(){
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ChatBoxService } from 'src/app/services/chat-box.service';
 
 @Component({
@@ -6,16 +7,25 @@ import { ChatBoxService } from 'src/app/services/chat-box.service';
   templateUrl: './chat-box.component.html',
   styleUrls: ['./chat-box.component.scss']
 })
-export class ChatBoxComponent implements OnInit {
+export class ChatBoxComponent implements OnInit, OnDestroy {
   
   prueba:any;
   text:string;
+  mensajeSubscription?: Subscription;
 
-  constructor(public chat: ChatBoxService) {
+
+  constructor(public chatService: ChatBoxService) {
     this.text = "";
   }
 
   ngOnInit(): void {
+    this.mensajeSubscription = this.chatService.getMessage().subscribe( msg => {
+      console.log(msg)
+    })
+  }
+
+  ngOnDestroy() {
+    //this.mensajeSubscription.unsubscribe();
   }
 
   sendMessage(){
@@ -24,7 +34,7 @@ export class ChatBoxComponent implements OnInit {
       messageType: 1
     };
     //una vez q tngo el objeto creado voy a usar el ss creado:
-    this.chat.sendMessage(messageInfo);
+    this.chatService.sendMessage(messageInfo);
     this.text = "";
   }
 

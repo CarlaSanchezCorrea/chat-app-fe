@@ -7,7 +7,8 @@ import { SocketService } from './socket.service';
 
 export class ChatBoxService {
 
-  chats = Array();
+ // chats = Array();
+  
 
   constructor(private socketService:SocketService) { 
     //ahora necesito que cuando esta clase se inicialice el socket esté escuchando
@@ -15,14 +16,20 @@ export class ChatBoxService {
   }
 
   sendMessage(messageInfo: any){
-    this.chats.push(messageInfo);
-    this.socketService.socket.emit("sendMessage", messageInfo)
+   // this.chats.push(messageInfo);
+    //this.socketService.socket.emit("sendMessage", messageInfo)
+    this.socketService.emit("sendMessage", messageInfo);
   }
 
-  onReceiveMessage(){
-    this.socketService.socket.on("receiveMessage", (messageInfo: any)=>{
-      messageInfo.messageType = 2;
-      this.chats.push(messageInfo)
-    })
+  getMessage(){
+   return this.socketService.listen('mensaje-nuevo');
   }
+
+  // onReceiveMessage(){
+  //   // this.socketService.socket.on("receiveMessage", (messageInfo: any)=>{
+  //   //   messageInfo.messageType = 2;
+  //   //   this.chats.push(messageInfo)
+    
+  //   })
+  // }
 }
