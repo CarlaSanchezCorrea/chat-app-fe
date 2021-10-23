@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ChatBoxService } from 'src/app/services/chat-box.service';
+import { SocketService } from 'src/app/services/socket.service';
+
 
 @Component({
   selector: 'app-chat-box',
@@ -14,17 +16,22 @@ export class ChatBoxComponent implements OnInit, OnDestroy {
   mensajeSubscription?: Subscription;
 
 
-  constructor(public chatService: ChatBoxService) {
+  constructor(
+    public chatService: ChatBoxService,
+    public socketService: SocketService,
+    ) {
+
     this.text = "";
   }
 
   ngOnInit(): void {
     this.mensajeSubscription = this.chatService.getMessage().subscribe( msg => {
       console.log(msg)
-    })
+    });
+    console.log(this.mensajeSubscription);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     //this.mensajeSubscription.unsubscribe();
   }
 
