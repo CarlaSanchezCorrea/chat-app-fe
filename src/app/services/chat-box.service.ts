@@ -19,6 +19,7 @@ export class ChatBoxService {
    // this.chats.push(messageInfo);
     //this.socketService.socket.emit("sendMessage", messageInfo)
     this.socketService.emit("sendMessage", messageInfo);
+    console.log(this.socketService.emit("sendMessage", messageInfo))
   }
 
   getMessage(){
